@@ -91,8 +91,10 @@ num_epoch = 10
 print(f"Number of epoches: {num_epoch}")
 start_time = time.time()
 for e in range(num_epoch):
-    print(f"Epoch number: {e}")
+    epoch_start = time.time()
     train(list_adj_train,list_adj_t_train,list_num_node_train,bc_mat_train)
+    epoch_end = time.time()
+    print("Epoch number: {} time: {}".format(e, epoch_end-epoch_start))
 
 end_train_time = time.time()
 

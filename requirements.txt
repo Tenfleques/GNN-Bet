@@ -1,0 +1,6 @@
+networkit
+networkx
+scipy
+numpy
+torch
+torchvision

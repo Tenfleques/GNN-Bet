@@ -8,7 +8,7 @@ import random
 import torch.nn as nn
 from model import GNN_Bet
 torch.manual_seed(20)
-
+import time
 #Loading graph data
 
 data_path = "./data/"
@@ -89,12 +89,20 @@ optimizer = torch.optim.Adam(model.parameters(),lr=0.0005)
 num_epoch = 10
 
 print(f"Number of epoches: {num_epoch}")
+start_time = time.time()
 for e in range(num_epoch):
     print(f"Epoch number: {e}")
     train(list_adj_train,list_adj_t_train,list_num_node_train,bc_mat_train)
+
+end_train_time = time.time()
+
+interval = end_train_time - start_time
+
+print("[INFO] train time is {}".format(interval))
+
+start_time = time.time()
 #test on 10 test graphs and print average KT Score and its stanard deviation
 with torch.no_grad():
     test(list_adj_test,list_adj_t_test,list_num_node_test,bc_mat_test)
-
-
-    
+end_train_time = time.time()
+print("[INFO] test time on 10 graphs {}".format(interval))
